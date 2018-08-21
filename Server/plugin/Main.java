@@ -3,6 +3,7 @@ package plugin;
 import java.io.File;
 import java.io.IOException;
 
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -12,6 +13,7 @@ import plugin.commands.Gamemode;
 import plugin.commands.God;
 import plugin.commands.Nickname;
 import plugin.commands.Setspawn;
+import plugin.construction.Fill;
 import plugin.events.Abilities;
 import plugin.events.ChatEvents;
 import plugin.events.GrapplingHook;
@@ -63,6 +65,7 @@ public class Main extends JavaPlugin {
 		getCommand("setspawn").setExecutor(new Setspawn());
 		getCommand("spawn").setExecutor(new Setspawn());
 		getCommand("world").setExecutor(new World());
+		getCommand("fill").setExecutor(new Fill());
 		
 	}
 	
@@ -74,6 +77,7 @@ public class Main extends JavaPlugin {
 		new GrapplingHook(this);
 		new Abilities(this);
 		new SelectionTool(this);
+		Bukkit.getServer().getPluginManager().registerEvents(new Fill(), this);
 		
 	}
 }

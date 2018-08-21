@@ -21,6 +21,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class GrapplingHook implements Listener {
@@ -78,17 +79,16 @@ public class GrapplingHook implements Listener {
 				Vector v = p.getLocation().getDirection();
 				Bukkit.getPlayer(p.getName()).getWorld().playSound(p.getLocation(), Sound.ENTITY_LINGERING_POTION_THROW, 1, 1);
 				
-				Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+				new BukkitRunnable() {
+					
+					@Override
 					public void run() {
-						while(arrow.isInBlock() != false) {
-							if(arrow.isInBlock()) {
-								p.setVelocity(v.multiply(2.0D));
-								arrow.remove();
-								break;
-							}
-						}
-			       	}
-				}, 15);
+						if(arrow.isInBlock()) {
+							p.setVelocity(v.multiply(2.0D));
+							arrow.remove();
+						}	
+					}
+				};
 			}
 		}
 	}

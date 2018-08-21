@@ -3,6 +3,7 @@ package plugin;
 import java.util.HashMap;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -55,17 +56,20 @@ public class SelectionTool implements Listener {
 					return;
 				}
 				if(selectedPoints.intValue() == 2) {
-					secondPoint.put(uuid, loc);
-					if(compareWorlds(point1(uuid), point2(uuid))) {
-						p.sendMessage(ChatColor.DARK_AQUA + "End point set." + " (" + getLength(point1(uuid), point2(uuid)) + "x" + 
-								getWidth(point1(uuid), point2(uuid)) + ")");
+					if(secondPoint.get(uuid) == null) {
+						secondPoint.put(uuid, loc);
+						if(compareWorlds(point1(uuid), point2(uuid))) {
+							p.sendMessage(ChatColor.DARK_AQUA + "End point set." + " (" + getLength(point1(uuid), point2(uuid)) + "x" + 
+									getWidth(point1(uuid), point2(uuid)) + ")");
+							return;
+						} 
 						clearPoints(uuid);
+						firstPoint.put(uuid, loc);
+						p.sendMessage(ChatColor.DARK_AQUA + "Start point set.");
 						return;
+					} else {
+						clearPoints(uuid);
 					}
-					clearPoints(uuid);
-					firstPoint.put(uuid, loc);
-					p.sendMessage(ChatColor.DARK_AQUA + "Start point set.");
-					return;
 				}
 				firstPoint.put(uuid, loc);
 				p.sendMessage(ChatColor.DARK_AQUA + "Start point set.");

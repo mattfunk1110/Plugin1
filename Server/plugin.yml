@@ -26,3 +26,5 @@ commands:
       description: Teleports user to the world spawn point.
    world:
       description: Teleports user to the typed world.
+   fill:
+      description: Fills.
