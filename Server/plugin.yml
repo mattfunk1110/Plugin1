@@ -1,0 +1,28 @@
+name: OfficialPlugin
+version: 1.0
+main: plugin.Main
+description: Main plugin for my server.
+api-version: 1.13
+
+load: STARTUP
+
+worlds:
+    moon:
+         generator: Cloud:test
+
+commands:
+   nickname:
+      description: Sets a nickname for the user.
+      aliases: [nick]
+   money:
+      description: Display's the user's money.
+   gamemode:
+      description: Changes the user's gamemode.
+   god:
+      description: Puts the user in godmode.
+   setspawn:
+      description: Sets the world spawn point.
+   spawn:
+      description: Teleports user to the world spawn point.
+   world:
+      description: Teleports user to the typed world.
