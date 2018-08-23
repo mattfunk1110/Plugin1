@@ -28,3 +28,7 @@ commands:
       description: Teleports user to the typed world.
    fill:
       description: Fills.
+   sphere:
+      description: Make ball.
+   brush:
+      description: Make ball far away.

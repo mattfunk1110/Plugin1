@@ -8,12 +8,14 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
-
+import plugin.commands.Clear;
 import plugin.commands.Gamemode;
 import plugin.commands.God;
 import plugin.commands.Nickname;
 import plugin.commands.Setspawn;
 import plugin.construction.Fill;
+import plugin.construction.SniperTool;
+import plugin.construction.Sphere;
 import plugin.events.Abilities;
 import plugin.events.ChatEvents;
 import plugin.events.GrapplingHook;
@@ -66,6 +68,8 @@ public class Main extends JavaPlugin {
 		getCommand("spawn").setExecutor(new Setspawn());
 		getCommand("world").setExecutor(new World());
 		getCommand("fill").setExecutor(new Fill());
+		getCommand("sphere").setExecutor(new Sphere());
+		getCommand("brush").setExecutor(new SniperTool());
 		
 	}
 	
@@ -78,6 +82,8 @@ public class Main extends JavaPlugin {
 		new Abilities(this);
 		new SelectionTool(this);
 		Bukkit.getServer().getPluginManager().registerEvents(new Fill(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new Sphere(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new SniperTool(), this);
 		
 	}
 }
